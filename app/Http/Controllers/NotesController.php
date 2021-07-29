@@ -17,6 +17,11 @@ class NotesController extends Controller
 
     public function store(){
 
+        request()->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
         Note::create(request(['title', 'description']));
 
         return redirect('/notes');
