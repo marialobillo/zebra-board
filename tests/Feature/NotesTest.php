@@ -40,7 +40,7 @@ class NotesTest extends TestCase
     }
 
     /**
-     * @ test
+     * @test
      */
     public function a_note_requires_a_description()
     {
