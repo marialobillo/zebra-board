@@ -48,4 +48,19 @@ class NotesTest extends TestCase
 
         $this->post('/notes', $attributes)->assertSessionHasErrors('description');
     }
+
+
+    /**
+     * @test
+     */
+    public function an_user_can_view_a_note()
+    {
+        $this->withoutExceptionHandling();
+
+        $note = Note::factory()->create();
+
+        $this->get($note->path())
+            ->assertSee($note->title)
+            ->assertSee($note->description);
+    }
 }

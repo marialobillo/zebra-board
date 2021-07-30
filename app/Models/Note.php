@@ -11,4 +11,8 @@ class Note extends Model
 
     protected $fillable = ['title', 'description'];
 
+    public function path()
+    {
+        return "/notes/{$this->id}";
+    }
 }

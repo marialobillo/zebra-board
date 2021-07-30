@@ -20,5 +20,6 @@ Route::get('/', function () {
 });
 
 Route::get('/notes', [NotesController::class, 'index']);
-
 Route::post('/notes', [NotesController::class, 'store']);
+
+Route::get('/notes/{note}', [NotesController::class, 'show']);

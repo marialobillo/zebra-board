@@ -26,4 +26,10 @@ class NotesController extends Controller
 
         return redirect('/notes');
     }
+
+    public function show(Note $note){
+        //$note = Note::findOrFail(request('note'));
+
+        return view('notes.show', compact('note'));
+    }
 }
