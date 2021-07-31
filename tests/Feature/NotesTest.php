@@ -63,4 +63,16 @@ class NotesTest extends TestCase
             ->assertSee($note->title)
             ->assertSee($note->description);
     }
+
+    /**
+     * @ test
+     */
+    public function a_note_requires_an_owner()
+    {
+        $this->withoutExceptionHandling();
+
+        $attributes = Note::factory()->raw();
+
+        $this->post('/notes', $attributes)->assertSessionHasErrors('owner_id');
+    }
 }
