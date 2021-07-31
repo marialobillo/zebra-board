@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\NotesController;
 use App\Models\Note;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/notes', [NotesController::class, 'index']);
-Route::post('/notes', [NotesController::class, 'store']);
-
-Route::get('/notes/{note}', [NotesController::class, 'show']);
