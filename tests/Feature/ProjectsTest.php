@@ -25,6 +25,6 @@ class ProjectsTest extends TestCase
 
         $this->assertDatabaseHas('projects', $attributes);
 
-        $this->get('/projects')->assertSee($attributes);
+        $this->get('/projects')->assertSee($attributes['title']);
     }
 }

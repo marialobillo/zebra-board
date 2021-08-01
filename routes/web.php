@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\EventsController;
-use App\Http\Controllers\NotesController;
+
+use App\Http\Controllers\ProjectsController;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
@@ -20,17 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/projects', function(){
-    // validate
 
-    // persist
-    Project::create(request(['title', 'description']));
-    //redirect
+Route::get('/projects', [ProjectsController::class, 'index']);
+Route::post('/projects', [ProjectsController::class, 'store']);
 
-});
-
-Route::get('/projects', function(){
-    $projects = Project::all();
-
-    return view('projects.index', compact('projects'));
-});
