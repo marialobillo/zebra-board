@@ -23,4 +23,5 @@ Route::get('/', function () {
 
 Route::get('/projects', [ProjectsController::class, 'index']);
 Route::post('/projects', [ProjectsController::class, 'store']);
+Route::get('/projects/{project}', [ProjectsController::class, 'show']);
 
