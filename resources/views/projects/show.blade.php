@@ -8,7 +8,7 @@
     <title>Projects</title>
 </head>
 <body>
-<h1>Projects</h1>
+
 
 <ul>
     <h2>{{ $project->title }}</h2>

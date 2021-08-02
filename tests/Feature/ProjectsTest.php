@@ -58,7 +58,7 @@ class ProjectsTest extends TestCase
 
         $project = Project::factory()->create();
 
-        $this->get('/projects/' . $project->id)
+        $this->get($project->path())
                 ->assertSee($project->title)
                 ->assertSee($project->description);
     }
