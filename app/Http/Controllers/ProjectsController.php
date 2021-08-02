@@ -28,7 +28,7 @@ class ProjectsController extends Controller
         // persist
         Project::create($attributes);
         //redirect
-        return redirect('/projects');
+        return redirect()->route('projects');
     }
 
     public function show(Project $project)
