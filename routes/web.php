@@ -22,6 +22,12 @@ Route::get('/', function () {
 
 
 Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
-Route::post('/projects', [ProjectsController::class, 'store'])->name('projects.create');
+Route::post('/projects', [ProjectsController::class, 'store'])
+    ->name('projects.create')
+    ->middleware('auth');
 Route::get('/projects/{project}', [ProjectsController::class, 'show']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

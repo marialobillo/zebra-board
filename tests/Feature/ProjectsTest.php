@@ -58,7 +58,7 @@ class ProjectsTest extends TestCase
      */
     public function a_user_can_view_a_project()
     {
-        //$this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $project = Project::factory()->create();
 
@@ -72,10 +72,11 @@ class ProjectsTest extends TestCase
      */
     public function a_projects_requires_an_owner()
     {
-        //$this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
-        $attributes = Project::factory()->raw(['owner_id' => null]);
 
-        $this->post('/projects', $attributes)->assertSessionHasErrors('owner_id');
+        $attributes = Project::factory()->raw();
+
+        $this->post('/projects', $attributes)->assertRedirect('login');
     }
 }
