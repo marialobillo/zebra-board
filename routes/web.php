@@ -19,13 +19,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => 'auth'], function(){
 
+    Route::get('/projects', [ProjectsController::class, 'index'])
+        ->name('projects');
+    Route::post('/projects', [ProjectsController::class, 'store'])
+        ->name('projects.create');
+    Route::get('/projects/{project}', [ProjectsController::class, 'show']);
+});
 
-Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
-Route::post('/projects', [ProjectsController::class, 'store'])
-    ->name('projects.create')
-    ->middleware('auth');
-Route::get('/projects/{project}', [ProjectsController::class, 'show']);
 
 
 Auth::routes();
