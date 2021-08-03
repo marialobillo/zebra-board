@@ -15,6 +15,11 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects'));
     }
 
+    public function create()
+    {
+        return view('projects.create');
+    }
+
     public function store()
     {
         // validate
@@ -23,12 +28,10 @@ class ProjectsController extends Controller
             'description' => 'required',
         ]);
 
-        //$attributes['owner_id'] = auth()->id();
-
         auth()->user()->projects()->create($attributes);
 
         //redirect
-        return redirect()->route('projects');
+        return redirect()->route('projects.index');
     }
 
     public function show(Project $project)

@@ -8,23 +8,21 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ProjectsTest extends TestCase
+class ManageProjectsTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
     /** @test */
-    public function guests_can_not_create_projects()
+    public function guests_can_not_manage_projects()
     {
-        $attributes = Project::factory()->raw();
+        $project = Project::factory()->create();
 
-        $this->post('/projects', $attributes)->assertRedirect('login');
+        $this->post('/projects', $project->toArray())->assertRedirect('login');
+        $this->get('/projects/create')->assertRedirect('login');
+        $this->get('/projects')->assertRedirect('login');
+        $this->get($project->path())->assertRedirect('login');
     }
 
-    /** @test */
-    public function gests_cannot_view_projects()
-    {
-        $this->get('projects')->assertRedirect('login');
-    }
 
     /**
      * @ test
@@ -45,13 +43,14 @@ class ProjectsTest extends TestCase
 
         $this->actingAs(User::factory()->create());
 
+        $this->get('/projects/create')->assertStatus(200);
+
         $attributes = [
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
         ];
 
         $this->post('/projects', $attributes)->assertRedirect('/projects');
-
 
         $this->assertDatabaseHas('projects', $attributes);
 
@@ -99,8 +98,6 @@ class ProjectsTest extends TestCase
     public function an_authenticated_user_cannot_view_the_projects_of_others()
     {
         $this->actingAs(User::factory()->create());
-
-        //$this->withoutExceptionHandling();
 
         $project = Project::factory()->create();
 
