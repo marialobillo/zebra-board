@@ -12,7 +12,7 @@
             <div class="card col-3 my-3" >
 
                 <div class="card-body">
-                    <h5 class="card-title font-weight-bold">
+                    <h5 class="card-title font-weight-bold project-title">
                         <a href="{{ $project->path() }}">{{ $project->title }}</a>
                     </h5>
                     <p class="card-text">
