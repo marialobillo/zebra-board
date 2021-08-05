@@ -32,9 +32,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                   @guest
 
-                    </ul>
+                   @else
+                        <ul class="navbar-nav mr-auto">
+                            <li>
+                                <a href="/projects">Projects</a>
+                            </li>
+                        </ul>
+                    @endguest
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
