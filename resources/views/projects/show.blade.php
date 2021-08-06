@@ -20,7 +20,9 @@
 
                     <h3>General Notes</h3>
 
-                        <textarea class="card p-2 form-control">Lorem Ipsum</textarea>
+                        <textarea class="card p-2 form-control">
+                            {{ $project->description }}
+                        </textarea>
                 </div>
                 <div class="col-3">
                     @include('projects.card')
