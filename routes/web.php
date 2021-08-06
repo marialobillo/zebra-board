@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ProjectTasksController;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/projects', [ProjectsController::class, 'store'])
         ->name('projects.store');
     Route::get('/projects/{project}', [ProjectsController::class, 'show']);
+
+    Route::post('/projects/{project}/tasks', [ProjectTasksController::class, 'store']);
 });
 
 
