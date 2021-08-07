@@ -13,11 +13,9 @@
             <div class="row">
                 <div class="col-9">
                     <h5>Tasks</h5>
-                        <div class="card p-2 mb-2">Lorem Ipsum</div>
-                        <div class="card p-2 mb-2">Lorem Ipsum</div>
-                        <div class="card p-2 mb-2">Lorem Ipsum</div>
-                        <div class="card p-2 mb-2">Lorem Ipsum</div>
-
+                        @foreach($project->tasks as $task)
+                            <div class="card p-2 mb-2">{{ $task->body }}</div>
+                        @endforeach
                     <h3>General Notes</h3>
 
                         <textarea class="card p-2 form-control">
