@@ -6,3 +6,12 @@
 .input-task{
     border:none;
 }
+
+.checkbox-medium{
+    font-size: 0.2rem;
+    margin-top:13px;
+}
+
+.tachado{
+    text-decoration: line-through;
+}

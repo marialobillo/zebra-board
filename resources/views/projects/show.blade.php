@@ -14,7 +14,33 @@
                 <div class="col-9">
                     <h5>Tasks</h5>
                         @foreach($project->tasks as $task)
-                            <div class="card p-2 mb-2">{{ $task->body }}</div>
+                            <div class="card p-2 mb-2">
+                                <form action="{{ $project->path() . "/tasks/" . $task->id }}"
+                                      method="POST">
+                                    @method('PATCH')
+                                    @csrf
+                                    <div class="form-row">
+                                        <div class="col-7">
+                                            <input value="{{ $task->body }}"
+                                                   name="body"
+                                                   class="form-control input-task {{ $task->completed ? 'tachado' : '' }}">
+                                        </div>
+                                        <div class="col">
+                                            <label for="" class="form-control input-task">Tomorrow</label>
+                                        </div>
+                                        <div class="col-1">
+                                            <input type="checkbox"
+                                                   name="completed"
+                                                   onChange="this.form.submit()"
+                                                   class="form-control checkbox-medium"
+                                                   {{ $task->completed ? 'checked' : '' }}
+                                            >
+                                        </div>
+
+                                    </div>
+                                </form>
+
+                            </div>
                         @endforeach
                         <div class="card p-2 mb-2">
                             <form action="{{ $project->path(). '/tasks' }}" method="POST">
