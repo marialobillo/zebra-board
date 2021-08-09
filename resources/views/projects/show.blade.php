@@ -15,7 +15,7 @@
                     <h5>Tasks</h5>
                         @foreach($project->tasks as $task)
                             <div class="card p-2 mb-2">
-                                <form action="{{ $project->path() . "/tasks/" . $task->id }}"
+                                <form action="{{ $task->path() }}"
                                       method="POST">
                                     @method('PATCH')
                                     @csrf

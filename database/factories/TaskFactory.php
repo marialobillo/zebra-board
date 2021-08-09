@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
 
 class TaskFactory extends Factory
 {
@@ -23,7 +25,8 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'body' => $this->faker->sentence(3)
+            'body' => $this->faker->paragraph(5),
+            'project_id' => Project::factory()
         ];
     }
 }
