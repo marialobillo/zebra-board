@@ -53,9 +53,19 @@
                         </div>
                     <h3>General Notes</h3>
 
-                        <textarea class="card p-2 form-control">
-                            {{ $project->description }}
-                        </textarea>
+                        <form action="{{ $project->path() }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <div class="form-group">
+                                <textarea
+                                    class="card p-2 form-control"
+                                    name="notes"
+                                    placeholder="Add here some extra notes..."
+                                >{{ $project->notes }}</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+
                 </div>
                 <div class="col-3">
                     @include('projects.card')
