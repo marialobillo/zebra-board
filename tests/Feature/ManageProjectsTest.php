@@ -90,7 +90,7 @@ class ManageProjectsTest extends TestCase
     }
 
     /**
-     * @test
+     * @ test
      */
     public function a_user_can_view_their_project()
     {
