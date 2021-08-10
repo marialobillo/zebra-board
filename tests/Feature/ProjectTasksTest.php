@@ -56,9 +56,11 @@ class ProjectTasksTest extends TestCase
     public function a_task_can_be_updated()
     {
         $this->withoutExceptionHandling();
-        $this->signIn();
 
-        $project = Project::factory()->create(['owner_id' => auth()->id()]);
+
+        $project = Project::factory()->withTasks(1)->create();
+
+        $this->signIn();
 
         $task = $project->addTask('test task');
 
