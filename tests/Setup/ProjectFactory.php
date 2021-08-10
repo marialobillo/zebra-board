@@ -9,16 +9,19 @@ use App\Models\User;
 class ProjectFactory
 {
     protected $tasksCount = 0;
+    protected $user;
 
     public function withTasks($count)
     {
         $this->tasksCount = $count;
+
+        return $this;
     }
 
     public function create()
     {
         $project = Project::factory()->create([
-            'owner_id' => User::factory(),
+            'owner_id' => $this->user ?? User::factory(),
 
         ]);
 
@@ -27,5 +30,12 @@ class ProjectFactory
         ]);
 
         return $project;
+    }
+
+    public function ownedBy($user)
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }
