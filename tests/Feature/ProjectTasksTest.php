@@ -18,11 +18,10 @@ class ProjectTasksTest extends TestCase
      */
     public function a_project_can_have_tasks()
     {
-        $this->signIn();
+        $project = ProjectFactory::create();
 
-        $project = Project::factory()->create(['owner_id' => auth()->id()]);
-
-        $this->post($project->path() . '/tasks', ['body' => 'Lorem Ipsum']);
+        $this->actingAs($project->owner)
+            ->post($project->path() . '/tasks', ['body' => 'Lorem Ipsum']);
 
         $this->get($project->path())
             ->assertSee('Lorem Ipsum');
@@ -31,13 +30,13 @@ class ProjectTasksTest extends TestCase
     /** @test */
     public function a_task_requires_a_body()
     {
-        $this->signIn();
-
-        $project = Project::factory()->create(['owner_id' => auth()->id()]);
+        $project = ProjectFactory::create();
 
         $attributes = Task::factory()->raw(['body' => '']);
 
-        $this->post($project->path() . '/tasks', $attributes)->assertSessionHasErrors('body');
+        $this->actingAs($project->owner)
+            ->post($project->path() . '/tasks', $attributes)
+            ->assertSessionHasErrors('body');
     }
 
     /** @test */
