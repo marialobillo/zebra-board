@@ -3,10 +3,17 @@
 @section('content')
 
     <div class="row">
-        <p class="text-muted text-sm">
+        <p class="text-muted text-sm col-8">
             <a href="/projects">My Projects</a> > {{ $project->title }}
         </p>
+
+        <div class="col-2">
+            <a class="btn btn-primary"
+                href="{{ $project->path() . '/edit' }}">Edit Project</a>
+        </div>
     </div>
+
+
 
     <div class="row">
         <div class="col-9">
